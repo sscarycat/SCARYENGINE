@@ -3,6 +3,6 @@ project(SCARYENGINE)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(SCARYENGINE main.cpp
+add_executable(SCARYENGINE
         SCARYENGINE/SCARYENGINE.cpp
         SCARYENGINE/SCARYENGINE.h)
