@@ -8,6 +8,10 @@
 #include <string>
 #include <vector>
 #include <string_view>
+#include <windows.h>
+#include <mmsystem.h>
+
+#pragma comment (lib, "winmm.lib")
 
 
 /*
@@ -22,16 +26,21 @@
  * play_dialog(const vector<Line>& dg) Принимает вектор формата "Текст", Задержка между сообщенями.
  * int Random(int min, int max) Рандом. возвращает рандомное число ОТ. и ДО
  * type_text(string_view text, int delay) медленный принт текста. принимает текст и задержку между буквами.
+ * DrawMenu(const char *splash, const std::vector<std::string>& elements); Рисует меню. а именно сначала логотип. потом элементы меню. элементы меню принимаются по ссылке вектором типом строки
 */
 
-using namespace std;
-
 struct Line {
-    string text;
+    std::string text;
     int ms;
 };
 
 class SCARYENGINE {
+private:
+    struct ScaryRENDERER {
+        void DrawMenu(const char *splash, const std::vector<std::string>& elements);
+    };
+
+    ScaryRENDERER renderer;
 public:
 
     SCARYENGINE() {
@@ -50,12 +59,18 @@ public:
 
     void clear();
     void sleep_for(int ms);
-    void make_call(int count, int ms, string text);
+    void make_call(int count, int ms, std::string text);
     void print_ascii_pointer(const char* splash);
     void print_ascii(const std::string& splash);
-    void play_dialog(const vector<Line>& dg);
+    void play_dialog(const std::vector<Line>& dg);
     int Random(int min, int max);
-    void type_text(string_view text, int delay);
+    void type_text(std::string_view text, int delay);
+    void DrawMenu(const char* splash, const std::vector<std::string>& elements) {
+        renderer.DrawMenu(splash, elements);
+    }
+    void PlaySound(const std::string& path) {
+        ::PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC);
+    }
 };
 
 
