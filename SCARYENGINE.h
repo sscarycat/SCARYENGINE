@@ -27,6 +27,7 @@
  * int Random(int min, int max) Рандом. возвращает рандомное число ОТ. и ДО
  * type_text(string_view text, int delay) медленный принт текста. принимает текст и задержку между буквами.
  * DrawMenu(const char *splash, const std::vector<std::string>& elements); Рисует меню. а именно сначала логотип. потом элементы меню. элементы меню принимаются по ссылке вектором типом строки
+ * Также есть ещё PlaySound.
 */
 
 struct Line {
