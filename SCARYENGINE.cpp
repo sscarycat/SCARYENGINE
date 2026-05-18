@@ -8,6 +8,7 @@
 #include <vector>
 #include <string_view>
 #include <cstdio>
+#include <conio.h>
 
 void SCARYENGINE::clear() {
     std::cout << "\033[2J\033[H";
@@ -67,4 +68,10 @@ void SCARYENGINE::ScaryRENDERER::DrawMenu(const char *splash, const std::vector<
     for (size_t x = 0; x < elements.size(); x++) {
         std::cout << elements[x] << std::endl;
     }
+}
+
+int SCARYENGINE::get_input() {
+    int key = _getch();
+
+    return key;
 }
