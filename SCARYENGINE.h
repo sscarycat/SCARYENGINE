@@ -11,6 +11,7 @@
 #include <windows.h>
 #include <mmsystem.h>
 
+
 #pragma comment (lib, "winmm.lib")
 
 
@@ -27,7 +28,8 @@
  * int Random(int min, int max) Рандом. возвращает рандомное число ОТ. и ДО
  * type_text(string_view text, int delay) медленный принт текста. принимает текст и задержку между буквами.
  * DrawMenu(const char *splash, const std::vector<std::string>& elements); Рисует меню. а именно сначала логотип. потом элементы меню. элементы меню принимаются по ссылке вектором типом строки
- * Также есть ещё PlaySound.
+ * PlaySound(const std::string& path)	Работает на базе winmm. производит звуки в консоли. прикольная вещь. принимает только путь который пишется через RAW.	Если вы сделаете звук когда программа должна будет завериштся. то звук не проиграется. чтобы он проигрался добавьте sleep_for(5000);
+ * get_input() Ничего не принимает в аргументы. просто возвращает код нажатой клавиши через _getch.
 */
 
 struct Line {
@@ -72,6 +74,8 @@ public:
     void PlaySound(const std::string& path) {
         ::PlaySoundA(path.c_str(), NULL, SND_FILENAME | SND_ASYNC);
     }
+
+    int get_input();
 };
 
 
