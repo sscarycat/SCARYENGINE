@@ -13,10 +13,10 @@ class SCARYENGINE {
 public:
     SCARYENGINE();
 
-    void clear();
-    void sleep_for(int ms);
-    int Random(int min, int max);
-    int get_input();
+    static void clear();
+    static void sleep_for(int ms);
+    static int Random(int min, int max);
+    static int get_input();
 };
 
 #endif
