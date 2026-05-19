@@ -9,12 +9,13 @@
 
 class SCARYRENDERER {
 public:
-    void print_ascii_pointer(const char* splash);
-    void print_ascii(const std::string& splash);
-    void type_text(std::string_view text, int delay, SCARYENGINE& engine);
-    void play_dialog(const std::vector<Line>& dg, SCARYENGINE& engine);
-    void make_call(int count, int ms, std::string text, SCARYENGINE& engine);
-    void DrawMenu(const char *splash, const std::vector<std::string>& elements);
+    static void print_ascii_pointer(const char* splash);
+    static void print_ascii(const std::string_view splash);
+    static void type_text(std::string_view text, int delay, SCARYENGINE& engine);
+    static void play_dialog(const std::vector<Line>& dg, SCARYENGINE& engine);
+    static void make_call(int count, int ms, const std::string_view text, SCARYENGINE& engine);
+    static void DrawMenu(const char *splash, const std::vector<std::string>& elements);
+    static std::string_view get_user_name(); 
 };
 
 
