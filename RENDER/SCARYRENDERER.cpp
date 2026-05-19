@@ -1,5 +1,7 @@
 #include "SCARYRENDERER.h"
 #include <iostream>
+#include <stdlib.h>
+#include <windows.h>
 
 void SCARYRENDERER::print_ascii_pointer(const char* splash) {
     while (*splash) {
@@ -7,7 +9,7 @@ void SCARYRENDERER::print_ascii_pointer(const char* splash) {
     }
 }
 
-void SCARYRENDERER::print_ascii(const std::string& splash) {
+void SCARYRENDERER::print_ascii(const std::string_view splash) {
     std::cout << splash;
 }
 
@@ -26,7 +28,9 @@ void SCARYRENDERER::play_dialog(const std::vector<Line>& dg, SCARYENGINE& engine
     }
 }
 
-void SCARYRENDERER::make_call(int count, int ms, std::string text, SCARYENGINE& engine) {
+
+
+void SCARYRENDERER::make_call(int count, int ms, const std::string_view text, SCARYENGINE& engine) {
     for (int call = 0; call < count; call++) {
         engine.sleep_for(ms);
         engine.clear();
@@ -44,3 +48,19 @@ void SCARYRENDERER::DrawMenu(const char *splash, const std::vector<std::string>&
         std::cout << elements[x] << std::endl;
     }
 }
+
+std::string_view SCARYRENDERER::get_user_name() {
+    const char* user = std::getenv("USERNAME");
+
+    if (!user) {
+        user = std::getenv("USER");
+    }
+
+    if (user) {
+        return user;
+    }
+
+    static const std::string fallback = "Unknown Victim";
+    return fallback;
+}
+
