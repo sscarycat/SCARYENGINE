@@ -4,9 +4,7 @@
 #include <windows.h>
 
 void SCARYRENDERER::print_ascii_pointer(const char* splash) {
-    while (*splash) {
-        putchar(*splash++);
-    }
+    std::fwrite(splash, 1, strlen(splash), stdout);
 }
 
 void SCARYRENDERER::print_ascii(const std::string_view splash) {
