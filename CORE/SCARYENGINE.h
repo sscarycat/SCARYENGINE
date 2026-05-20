@@ -5,7 +5,7 @@
 #include <vector>
 
 struct Line {
-    std::string text;
+    std::string_view text;
     int ms;
 };
 
