@@ -14,8 +14,8 @@ public:
     static void type_text(std::string_view text, int delay, SCARYENGINE& engine);
     static void play_dialog(const std::vector<Line>& dg, SCARYENGINE& engine);
     static void make_call(int count, int ms, const std::string_view text, SCARYENGINE& engine);
-    static void DrawMenu(const char *splash, const std::vector<std::string>& elements);
-    static std::string_view get_user_name(); 
+    static void DrawMenu(const char *splash, const std::vector<std::string_view>& elements);
+    static std::string_view get_user_name();
 };
 
 
