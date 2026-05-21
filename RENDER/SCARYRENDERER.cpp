@@ -2,7 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
-
+#include <stdio.h>
+#include <cstring>
 void SCARYRENDERER::print_ascii_pointer(const char* splash) {
     std::fwrite(splash, 1, strlen(splash), stdout);
 }
@@ -13,7 +14,7 @@ void SCARYRENDERER::print_ascii(const std::string_view splash) {
 
 void SCARYRENDERER::type_text(std::string_view text, int delay, SCARYENGINE& engine) {
     for (char c : text) {
-        std::cout << c << std::flush;
+        std::cout << c << std::fflush;
         engine.sleep_for(delay);
     }
 }
@@ -37,28 +38,21 @@ void SCARYRENDERER::make_call(int count, int ms, const std::string_view text, SC
     }
 }
 
-void SCARYRENDERER::DrawMenu(const char *splash, const std::vector<std::string>& elements) {
-    while (*splash) {
-        putchar(*splash++);
-    }
+void SCARYRENDERER::DrawMenu(const char *splash, const std::vector<std::string_view>& elements) {
+    std::fwrite(splash, 1, std::strlen(splash), stdout);
 
     for (size_t x = 0; x < elements.size(); x++) {
         std::cout << elements[x] << std::endl;
     }
 }
 
-std::string_view SCARYRENDERER::get_user_name() {
+std::string_view SCARYRENDERER:: get_user_name() {
     const char* user = std::getenv("USERNAME");
 
-    if (!user) {
-        user = std::getenv("USER");
-    }
+    if (!user) user = std::getenv("USER");
 
-    if (user) {
-        return user;
-    }
+    if (user) return user;
 
-    static const std::string fallback = "Unknown Victim";
-    return fallback;
+    return "Unknown Victim";
 }
 
